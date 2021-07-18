@@ -1,4 +1,4 @@
-getgenv().hitbox = true
+getgenv().hitbox = false
 getgenv().infjump = true
 
 function imgay(gamer)
