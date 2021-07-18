@@ -20,9 +20,9 @@ end
 
 local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/AikaV3rm/UiLib/master/Lib.lua')))()
 
-local w = library:CreateWindow("[dt] reversal") -- Creates the window
+local w = library:CreateWindow("[dt] reversal")
 
-local b = w:CreateFolder("kill") -- Creates the folder(U will put here your buttons,etc)
+local b = w:CreateFolder("kill")
 
 b:Toggle("Kill All",function(bool)
     getgenv().jaykillall = bool
