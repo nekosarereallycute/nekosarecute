@@ -1,17 +1,6 @@
 getgenv().jaymod = true
 
-local weapon = game:GetService("Workspace").ExclusiveRaidd["SCAR-H"].GunConfiguration
-
-name = "SCAR-H"
-        count = 1
-        for i,v in pairs(game.Workspace.ExclusiveRaidd:GetDescendants()) do
-            if v.Name == string.lower(name) then
-                v.Name = name..tostring(count)
-                count = count + 1
-            end
-        end
-    end
-end
+local weapon = game:GetService("Workspace").ExclusiveRaidd["GLOCK"].GunConfiguration
 
 function jaystation()
     if jaymod then
