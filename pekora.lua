@@ -58,6 +58,7 @@ function anticheatbypass()
     end)
     if setreadonly then setreadonly(rm, true) else make_writeable(rm, false) end
 end
+end
 
 
 
@@ -130,8 +131,6 @@ b:DestroyGui()
 --     print(value)
 -- end)
 
-b:DestroyGui()
-
 --[[
 How to refresh a dropdown:
 1)Create the dropdown and save it in a variable
@@ -150,7 +149,6 @@ local yourvariable = b:Label("Pretty Useless NGL",{
 2)Refresh it using the function
 yourvariable:Refresh("Hello") It will only change the text ofc
 ]]
-
 
 
 
