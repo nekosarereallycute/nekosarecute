@@ -1,7 +1,9 @@
+getgenv().jaymod = true
+
 local weapon = game:GetService("Workspace").ExclusiveRaidd["SCAR-H"].GunConfiguration
 
 function jaystation()
-    if weapon then
+    if jaymod then
         local weaponstats = require(weapon)
         weaponstats.MagSize = math.huge
         weaponstats.Recoil = 0
