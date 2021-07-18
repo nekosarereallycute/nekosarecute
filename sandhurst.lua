@@ -1,5 +1,5 @@
 local stuff = game:GetService("ReplicatedStorage").GunSystem.GunModels
-local v1 = local v1 = {
+local v1 = {
 	Animations = {}
 };
 v1.Animations.Idle = {
