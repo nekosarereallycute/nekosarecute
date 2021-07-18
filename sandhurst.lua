@@ -1,12 +1,12 @@
 local weapon = game:GetService("Workspace").ExclusiveRaidd["SCAR-H"].GunConfiguration
 
-function jaystation(gunmod)
+function jaystation()
     if weapon then
         local weaponstats = require(weapon)
-        weaponstats.MagSize = 200
-        weaponstats.Recoil = 0.1
-        weaponstats.BaseDamage = 100
-        weaponstats.StoredAmmo = 100
+        weaponstats.MagSize = math.huge
+        weaponstats.Recoil = 0
+        weaponstats.BaseDamage = math.huge
+        weaponstats.StoredAmmo = math.huge
     end
 end
 
@@ -16,15 +16,8 @@ local w = library:CreateWindow("Sandhurst Military Academy") -- Creates the wind
 
 local b = w:CreateFolder("gun mod") -- Creates the folder(U will put here your buttons,etc)
 
-local selectedMod
-
-
-b:Dropdown("Choose Gun",{"SCAR-H"},true,function(mod) --true/false, replaces the current title "Dropdown" with the option that t
-    selectedMod = mod
-end)
-
-b:Button("Mod Selected",function()
-    jaystation(selectedMod)
+b:Button("Mod SCAR-H",function()
+    jaystation()
 end)
 
 
