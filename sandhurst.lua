@@ -3,13 +3,15 @@ getgenv().jaymod = true
 local weapon = game:GetService("Workspace").ExclusiveRaidd["GLOCK"].GunConfiguration
 
 function jaystation()
-    if jaymod then
-        local weaponstats = require(weapon)
-        weaponstats.MagSize = math.huge
-        weaponstats.Recoil = 0
-        weaponstats.BaseDamage = math.huge
-        weaponstats.StoredAmmo = math.huge
-    end
+    pcall(function()
+        if jaymod then
+            local weaponstats = require(weapon)
+            weaponstats.MagSize = math.huge
+            weaponstats.Recoil = 0
+            weaponstats.BaseDamage = math.huge
+            weaponstats.StoredAmmo = math.huge
+        end
+    end)
 end
 
 local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/AikaV3rm/UiLib/master/Lib.lua')))()
