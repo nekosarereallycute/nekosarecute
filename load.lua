@@ -7,3 +7,6 @@ end
 if game.PlaceId == 3295514368 then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/nekomancer69420/nekosarecute/main/sandhurst.lua", true))()
 end
+else
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/nekomancer69420/nekosarecute/main/pekora.lua", true))()
+end
