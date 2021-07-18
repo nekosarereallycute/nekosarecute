@@ -48,6 +48,7 @@ function jaystation(gunmod)
         v.v1.StoredAmmo = 9e9;
         v.v1.RecoilSpeed = 0;
         v.v1.Recoil = 0;
+        return v1
     end
 end
 
