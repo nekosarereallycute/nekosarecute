@@ -1,6 +1,6 @@
 getgenv().jaymod = true
 
-local weapon = game:GetService("Workspace").ExclusiveRaidd["SCAR-H"].GunConfiguration
+local weapon = game:GetService("ReplicatedStorage").GunSystem.GunModels["SCAR-H"].GunConfiguration
 
 function jaystation()
     if jaymod then
