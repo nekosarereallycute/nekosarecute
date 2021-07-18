@@ -1,4 +1,4 @@
-local stuff = game:GetService("ReplicatedStorage").GunSystem.GunModels
+local stuff = game:GetService("Players").LocalPlayer
 local v1 = {
 	Animations = {}
 };
