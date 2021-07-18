@@ -3,14 +3,12 @@ getgenv().jaymod = true
 local weapon = game:GetService("Workspace").ExclusiveRaidd.GLOCK.GunConfiguration
 
 function jaystation()
-    pcall(function()
-        if jaymod then
-            local weaponstats = require(weapon)
-            weaponstats.MagSize = math.huge
-            weaponstats.Recoil = 0
-            weaponstats.BaseDamage = math.huge
-            weaponstats.StoredAmmo = math.huge
-        end
+    if jaymod then
+        local weaponstats = require(weapon)
+        weaponstats.MagSize = math.huge
+        weaponstats.Recoil = 0
+        weaponstats.BaseDamage = math.huge
+        weaponstats.StoredAmmo = math.huge
     end
 end
 
@@ -20,7 +18,7 @@ local w = library:CreateWindow("Sandhurst Military Academy") -- Creates the wind
 
 local b = w:CreateFolder("gun mod") -- Creates the folder(U will put here your buttons,etc)
 
-b:Button("Mod SCAR-H",function()
+b:Button("Mod GLOCK",function()
     jaystation()
 end)
 
