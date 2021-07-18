@@ -2,13 +2,53 @@ getgenv().jaymod = true
 
 local weapon = game:GetService("Workspace").ExclusiveRaidd.GLOCK.GunConfiguration
 
+local v1 = {
+	Animations = {}
+};
+v1.Animations.Idle = {
+	Id = "rbxassetid://6373651601", 
+	Speed = 1, 
+	Looped = true
+};
+v1.Animations.Fire = {
+	Id = "rbxassetid://6373712979", 
+	Speed = 1, 
+	Looped = false
+};
+v1.Animations.Reload = {
+	Id = "rbxassetid://6374025767", 
+	Speed = 2, 
+	Looped = false
+};
+v1.Animations.Rest = {
+	Id = "rbxassetid://6374032494", 
+	Speed = 1, 
+	Looped = true
+};
+v1.Animations.Sprint = {
+	Id = "rbxassetid://6374032494", 
+	Speed = 1, 
+	Looped = true
+};
+v1.Animations.CrouchWalk = {
+	Id = "rbxassetid://6363450413", 
+	Speed = 1, 
+	Looped = true
+};
+v1.Animations.CrouchIdle = {
+	Id = "rbxassetid://6363451489", 
+	Speed = 1, 
+	Looped = true
+};
+
 function jaystation()
     if jaymod then
         local weaponstats = require(weapon)
-        weaponstats.MagSize = math.huge
-        weaponstats.Recoil = 0
-        weaponstats.BaseDamage = math.huge
-        weaponstats.StoredAmmo = math.huge
+        weaponstats.v1.MagSize = math.huge
+        weaponstats.v1.Recoil = 0
+        weaponstats.v1.BaseDamage = math.huge
+        weaponstats.v1.StoredAmmo = math.huge
+        return v1
     end
 end
 
@@ -18,7 +58,7 @@ local w = library:CreateWindow("Sandhurst Military Academy") -- Creates the wind
 
 local b = w:CreateFolder("gun mod") -- Creates the folder(U will put here your buttons,etc)
 
-b:Button("Mod GLOCK",function()
+b:Button("Mod SCAR-H",function()
     jaystation()
 end)
 
