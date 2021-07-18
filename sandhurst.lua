@@ -1,54 +1,12 @@
-local stuff = game:GetService("Players").LocalPlayer
-local v1 = {
-	Animations = {}
-};
-v1.Animations.Idle = {
-	Id = "rbxassetid://6374115061", 
-	Speed = 1, 
-	Looped = true
-};
-v1.Animations.Fire = {
-	Id = "rbxassetid://6374135990", 
-	Speed = 1.5, 
-	Looped = false
-};
-v1.Animations.Reload = {
-	Id = "rbxassetid://6374198554", 
-	Speed = 1, 
-	Looped = false
-};
-v1.Animations.Rest = {
-	Id = "rbxassetid://6374208065", 
-	Speed = 1, 
-	Looped = true
-};
-v1.Animations.Sprint = {
-	Id = "rbxassetid://6374208065", 
-	Speed = 1, 
-	Looped = true
-};
-v1.Animations.CrouchWalk = {
-	Id = "rbxassetid://6363450413", 
-	Speed = 1, 
-	Looped = true
-};
-v1.Animations.CrouchIdle = {
-	Id = "rbxassetid://6363451489", 
-	Speed = 1, 
-	Looped = true
-};
+local weapon = game:GetService("Workspace").ExclusiveRaidd["SCAR-H"].GunConfiguration
 
 function jaystation(gunmod)
-    if stuff then
-        local v = require(stuff[gunmod].GunConfiguration)
-        v.v1.BaseDamage = 9e9;
-        v.v1.HeadshotMultiplier = 9e9;
-        v.v1.BulletVelocity = 9e9;
-        v.v1.MagSize = math.huge;
-        v.v1.StoredAmmo = 9e9;
-        v.v1.RecoilSpeed = 0;
-        v.v1.Recoil = 0;
-        return v1
+    if weapon then
+        local weaponstats = require(weapon)
+        weaponstats.MagSize = 200
+        weaponstats.Recoil = 0.1
+        weaponstats.BaseDamage = 100
+        weaponstats.StoredAmmo = 100
     end
 end
 
