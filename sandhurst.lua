@@ -1,65 +1,26 @@
-getgenv().jaymod = true
-
-local weapon = game:GetService("Workspace").ExclusiveRaidd.GLOCK.GunConfiguration
-
-local v1 = {
-	Animations = {}
-};
-v1.Animations.Idle = {
-	Id = "rbxassetid://6373651601", 
-	Speed = 1, 
-	Looped = true
-};
-v1.Animations.Fire = {
-	Id = "rbxassetid://6373712979", 
-	Speed = 1, 
-	Looped = false
-};
-v1.Animations.Reload = {
-	Id = "rbxassetid://6374025767", 
-	Speed = 2, 
-	Looped = false
-};
-v1.Animations.Rest = {
-	Id = "rbxassetid://6374032494", 
-	Speed = 1, 
-	Looped = true
-};
-v1.Animations.Sprint = {
-	Id = "rbxassetid://6374032494", 
-	Speed = 1, 
-	Looped = true
-};
-v1.Animations.CrouchWalk = {
-	Id = "rbxassetid://6363450413", 
-	Speed = 1, 
-	Looped = true
-};
-v1.Animations.CrouchIdle = {
-	Id = "rbxassetid://6363451489", 
-	Speed = 1, 
-	Looped = true
-};
-
-function jaystation()
-    if jaymod then
-        local weaponstats = require(weapon)
-        weaponstats.v1.MagSize = math.huge
-        weaponstats.v1.Recoil = 0
-        weaponstats.v1.BaseDamage = math.huge
-        weaponstats.v1.StoredAmmo = math.huge
-        return v1
+function imgay()
+    for i,v in pairs(game.Players:GetChildren()) do
+    if v and v.Character ~= nil and v ~= game.Players.LocalPlayer and v.TeamColor ~= game.Players.LocalPlayer.TeamColor then
+          v.Character.Head.Size = Vector3.new(25,25,25)
+    v.Character.Head.Material = "Neon"
+    v.Character.Head.BrickColor = BrickColor.new("Really blue")
+          v.Character.Head.Transparency = 0.7
+    end
     end
 end
 
+imgay()
+
 local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/AikaV3rm/UiLib/master/Lib.lua')))()
 
-local w = library:CreateWindow("Sandhurst Military Academy") -- Creates the window
+local w = library:CreateWindow("Sandhurst Military Academy")
 
-local b = w:CreateFolder("gun mod") -- Creates the folder(U will put here your buttons,etc)
+local b = w:CreateFolder("hitbox expander")
 
-b:Button("Mod SCAR-H",function()
-    jaystation()
+local c = w:CreateFolder("hi jay n time")
+
+b:Button("expand head hitbox",function()
+    imgay()
 end)
 
 
