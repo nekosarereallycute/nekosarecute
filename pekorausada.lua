@@ -24,6 +24,8 @@ local w = library:CreateWindow("[dt] reversal")
 
 local b = w:CreateFolder("kill")
 
+local c = w:CreateFolder("hi jay n time")
+
 b:Toggle("Kill All",function(bool)
     getgenv().jaykillall = bool
     if bool then
@@ -35,9 +37,9 @@ b:DestroyGui()
 
 
 -- b:Slider("Slider",{
---     min = 10; -- min value of the slider
---     max = 50; -- max value of the slider
---     precise = true; -- max 2 decimals
+--     min = 10;
+--     max = 50;
+--     precise = true;
 -- },function(value)
 --     print(value)
 -- end)
@@ -57,4 +59,5 @@ b:DestroyGui()
 -- b:Box("Box","number",function(value)
 --     print(value)
 -- end)
+
 
