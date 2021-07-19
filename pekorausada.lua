@@ -1,4 +1,5 @@
-if not getgenv().MTAPIMutex then loadstring(game:HttpGet("https://pastebin.com/raw/UwFCVrhS", true))() end
+if not getgenv().MTAPIMutex then loadstring(game:HttpGet("https://raw.githubusercontent.com/nekomancer69420/nekosarecute/main/bypassanticheat.lua", true))() end
+
 
 
 
