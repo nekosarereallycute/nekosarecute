@@ -9,7 +9,7 @@ function autoEnergyDrink()
                     [1] = "123ase"
                 }
                 
-                workspace.Events.AddBite1:FireServer(unpack(args))
+                workspace.Events.AddBite28:FireServer(unpack(args))  
             end)
         end
     end)
