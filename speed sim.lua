@@ -1,6 +1,7 @@
 getgenv().autoDrink = false
 getgenv().autoGems = true
 getgenv().autoPrestige = false
+getgenv().autoCoins = false
 
 function autoEnergyDrink()
     spawn(function()
@@ -48,6 +49,23 @@ function autoPrestigeToggle()
     end)
 end
 
+function autoCoinsToggle()
+    spawn(function()
+        if autoCoins then
+            game:GetService"RunService".RenderStepped:Connect(function()
+                for i, v in pairs(game:GetService("Workspace").Gems:GetDescendants()) do
+                    if v.Name == "TouchInterest" and v.Parent then
+                        firetouchinterest(variable1, v.Parent, 0)
+                        wait(0.01)
+                        firetouchinterest(variable1, v.Parent, 1)
+                    end
+                end
+            end)
+        end
+    end)
+end
+
+
 
 
 local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/AikaV3rm/UiLib/master/Lib.lua')))()
@@ -71,6 +89,13 @@ b:Toggle("Auto Prestige",function(bool)
     getgenv().autoPrestige = bool
     if bool then
         autoPrestigeToggle()
+    end
+end)
+
+b:Toggle("Auto Gems",function(bool)
+    getgenv().autoCoins = bool
+    if bool then
+        autoCoinsToggle()
     end
 end)
 
