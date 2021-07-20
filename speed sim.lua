@@ -1,5 +1,6 @@
 getgenv().autoDrink = false
 getgenv().autoGems = true
+getgenv().autoPrestige = false
 
 function autoEnergyDrink()
     spawn(function()
@@ -33,6 +34,21 @@ function touchGems(gaming)
     end)
 end
 
+function autoPrestigeToggle()
+    spawn(function()
+        if autoPrestige then
+            game:GetService"RunService".RenderStepped:Connect(function()
+                local args = {
+                    [1] = "130ss1"
+                }
+                
+                workspace.PrestigeEvent.Prestige:FireServer(unpack(args))
+            end)
+        end
+    end)
+end
+
+
 
 local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/AikaV3rm/UiLib/master/Lib.lua')))()
 
@@ -48,6 +64,13 @@ b:Toggle("Auto Drink",function(bool)
     getgenv().autoDrink = bool
     if bool then
         autoEnergyDrink()
+    end
+end)
+
+b:Toggle("Auto Prestige",function(bool)
+    getgenv().autoPrestige = bool
+    if bool then
+        autoPrestigeToggle()
     end
 end)
 
