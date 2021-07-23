@@ -27,6 +27,8 @@ local w = library:CreateWindow("aimblox")
 
 local b = w:CreateFolder("autofarm")
 
+local c = w:CreateFolder("jay hub")
+
 b:Toggle("auto points",function(bool)
     getgenv().autoPoints = bool
     if bool then
