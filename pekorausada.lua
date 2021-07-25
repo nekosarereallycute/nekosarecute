@@ -17,7 +17,7 @@ function killall()
 	end)
 end
 
-function 2gay()
+function toogay()
 	spawn(function()
 		if jayexpand then
 			for i,v in pairs(game.Players:GetChildren()) do
@@ -52,7 +52,7 @@ end)
 b:Toggle("Expand Head",function(bool)
     getgenv().jayexpand = bool
     if bool then
-        2gay()
+        toogay()
     end
 end)
 
