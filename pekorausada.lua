@@ -1,9 +1,5 @@
-if not getgenv().MTAPIMutex then loadstring(game:HttpGet("https://raw.githubusercontent.com/nekomancer69420/nekosarecute/main/bypassanticheat.lua", true))() end
-
-
-
-
 getgenv().jaykillall = false
+getgenv().jayexpand = false
 
 function killall()
 	spawn(function()
@@ -21,13 +17,28 @@ function killall()
 	end)
 end
 
+function 2gay()
+	spawn(function()
+		if jayexpand then
+			for i,v in pairs(game.Players:GetChildren()) do
+			if v and v.Character ~= nil and v ~= game.Players.LocalPlayer and v.TeamColor ~= game.Players.LocalPlayer.TeamColor then
+				v.Character.Head.Size = Vector3.new(25,25,25)
+			v.Character.Head.Material = "Neon"
+			v.Character.Head.BrickColor = BrickColor.new("Really blue")
+				v.Character.Head.Transparency = 0.7
+			end
+			end
+		end
+	end)
+end
+
 
 
 local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/AikaV3rm/UiLib/master/Lib.lua')))()
 
 local w = library:CreateWindow("[dt] reversal")
 
-local b = w:CreateFolder("kill")
+local b = w:CreateFolder("hax stuff")
 
 local c = w:CreateFolder("hi jay n time")
 
@@ -38,31 +49,13 @@ b:Toggle("Kill All",function(bool)
     end
 end)
 
+b:Toggle("Expand Head",function(bool)
+    getgenv().jayexpand = bool
+    if bool then
+        2gay()
+    end
+end)
+
 b:DestroyGui()
-
-
--- b:Slider("Slider",{
---     min = 10;
---     max = 50;
---     precise = true;
--- },function(value)
---     print(value)
--- end)
-
--- b:Dropdown("Dropdown",{"A","B","C"},true,function(mob)
---     print(mob)
--- end)
-
--- b:Bind("Bind",Enum.KeyCode.C,function()
---     print("Yes")
--- end)
-
--- b:ColorPicker("ColorPicker",Color3.fromRGB(255,0,0),function(color)
---     print(color)
--- end)
-
--- b:Box("Box","number",function(value)
---     print(value)
--- end)
 
 
