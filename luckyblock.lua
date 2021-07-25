@@ -85,4 +85,4 @@ b:Button("All items",function()
     SpawnAllBlocks()
 end)
 
-d:DestroyGui
+d:DestroyGui()
