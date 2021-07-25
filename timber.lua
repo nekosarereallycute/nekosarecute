@@ -142,6 +142,8 @@ local w = library:CreateWindow("timber")
 
 local b = w:CreateFolder("auto")
 
+local c = w:CreateFolder("jay hub winning")
+
 
 
 b:Toggle("autofarm",function(bool)
