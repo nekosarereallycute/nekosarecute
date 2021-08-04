@@ -107,7 +107,7 @@ local c = w:CreateFolder("jay hub winning")
 
 
 
-b:Toggle("autofarm",function(bool)
+b:Toggle("auto chop",function(bool)
     getgenv().autofarm = bool
     if bool then
         auto2()
