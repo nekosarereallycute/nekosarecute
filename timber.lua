@@ -35,7 +35,7 @@ local searched = {}
 function getPlot()
     for i , v in pairs(workspace.Plots:GetChildren()) do 
         if v:FindFirstChild("Owner") and v.Owner.Value == player then 
-            return v 
+            return v
         end 
     end
 end
@@ -86,55 +86,16 @@ function auto2()
                             else
                                 player.Character.PrimaryPart.CFrame = v.Base.CFrame 
                                 HitTree:FireServer(tonumber(plot.Name),v.Parent.Name,treeNum)
+                                wait(1.12)
                             end
                         until v.Parent == nil 
                         print("wwww")
-                        if getgenv().settings.sell.enabled == true then 
-                            if player.leaderstats.Logs.Value >= getgenv().settings.sell.min then 
-                                repeat 
-                                    runServ.Heartbeat:wait()
-                                    player.Character.PrimaryPart.CFrame = plot['0_0']['Sell'].CFrame 
-                                    
-                                until player.leaderstats.Logs.Value == 0 
-                            end
-                        end
-                        print("amogus")
-                        if getgenv().settings.expand == true then 
-                            for i , v in pairs(plot:GetChildren()) do 
-                                if v.ClassName == "Model" and v:FindFirstChild("Base") then 
-                                    player.Character.PrimaryPart.CFrame = v.Base.CFrame 
-                                    wait()
-                                    for i2,v2 in pairs(workspace.Promps.Expansion:GetChildren()) do 
-                                        if v2:FindFirstChildOfClass("BillboardGui") and player.leaderstats.Coins.Value >= tonumber(string.split(v2:FindFirstChildOfClass("BillboardGui").Cost.Text,"$")[2]) then 
-                                            repeat 
-                                                
-                                                if v2.Parent == nil then 
-                                                    break 
-                                                end
-                                                player.Character.PrimaryPart.CFrame = v2.CFrame 
-                                                wait()
-    
-                                            until v2.Parent == nil or player.leaderstats.Coins.Value < tonumber(string.split(v2:FindFirstChildOfClass("BillboardGui").Cost.Text,"$")[2])
-                                        end
-                                    end
-                                end
-                                
-                            end
-                        end
-                        local upgrades = getgenv().settings.upgrades
-                        for i , v in pairs(upgrades) do 
-                            print("amogus?",i)
-                            if v then 
-                                remStorage.Upgrade:FireServer(i)
-                            end
-                        end
                     end
                 end
             end
         end
     end)
 end
-
 
 local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/AikaV3rm/UiLib/master/Lib.lua')))()
 
