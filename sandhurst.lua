@@ -1,5 +1,10 @@
 getgenv().JumpEnabled = false
+getgenv().GetClothing = false
+getgenv().GetClothing2 = false
+getgenv().GetClothing3 = false
 local head = game.Players.LocalPlayer.Character.Head
+
+local chara = game.Players.LocalPlayer.Character
 function imgay()
     for i,v in pairs(game.Players:GetChildren()) do
     if v and v.Character ~= nil and v ~= game.Players.LocalPlayer and v.TeamColor ~= game.Players.LocalPlayer.TeamColor then
@@ -47,33 +52,51 @@ end
 
 
 function getPT()
-    for i,v in pairs(game:GetService("Workspace").Map.Contents.Misc.UniformRacks.Physical:GetDescendants()) do
-        if v.Name == "TouchInterest" and v.Parent then
-            firetouchinterest(head, v.Parent, 0)
-            wait(0.01)
-            firetouchinterest(head, v.Parent, 1)
+    spawn(function()
+        while GetClothing do
+            if game.Players.LocalPlayer.Character then
+                for i,v in pairs(game:GetService("Workspace").Map.Contents.Misc.UniformRacks.Physical:GetDescendants()) do
+                    if v.Name == "TouchInterest" and v.Parent then
+                        firetouchinterest(head, v.Parent, 0)
+                        wait(0.01)
+                        firetouchinterest(head, v.Parent, 1)
+                    end
+                end
+            end
         end
-    end
+    end)
 end
 
 function getST()
-    for i,v in pairs(game:GetService("Workspace").Map.Contents.Misc.UniformRacks.Standard:GetDescendants()) do
-        if v.Name == "TouchInterest" and v.Parent then
-            firetouchinterest(head, v.Parent, 0)
-            wait(0.01)
-            firetouchinterest(head, v.Parent, 1)
+    spawn(function()
+        while GetClothing2 do
+            if game.Players.LocalPlayer.Character then
+                for i,v in pairs(game:GetService("Workspace").Map.Contents.Misc.UniformRacks.Standard:GetDescendants()) do
+                    if v.Name == "TouchInterest" and v.Parent then
+                        firetouchinterest(head, v.Parent, 0)
+                        wait(0.01)
+                        firetouchinterest(head, v.Parent, 1)
+                    end
+                end
+            end
         end
-    end
+    end)
 end
 
 function getFormals()
-    for i,v in pairs(game:GetService("Workspace").Map.Contents.Misc.UniformRacks.Formal:GetDescendants()) do
-        if v.Name == "TouchInterest" and v.Parent then
-            firetouchinterest(head, v.Parent, 0)
-            wait(0.01)
-            firetouchinterest(head, v.Parent, 1)
+    spawn(function()
+        while GetClothing3 do
+            if game.Players.LocalPlayer.Character then
+                for i,v in pairs(game:GetService("Workspace").Map.Contents.Misc.UniformRacks.Formal:GetDescendants()) do
+                    if v.Name == "TouchInterest" and v.Parent then
+                        firetouchinterest(head, v.Parent, 0)
+                        wait(0.01)
+                        firetouchinterest(head, v.Parent, 1)
+                    end
+                end
+            end
         end
-    end
+    end)
 end
 
 
@@ -106,15 +129,23 @@ c:Toggle("Auto JJs",function(bool)
         AutoJJs(sussybaka)
     end
 end)
-
-c:Button("Get PT",function()
-    getPT()
+c:Toggle("Get PT",function(bool)
+    getgenv().GetClothing = bool
+    if bool then
+        getPT()
+    end
 end)
-c:Button("Get ST",function()
-    getST()
+c:Toggle("Get ST",function(bool)
+    getgenv().GetClothing2 = bool
+    if bool then
+        getST()
+    end
 end)
-c:Button("Get Formals",function()
-    getFormals()
+c:Toggle("Get Formals",function(bool)
+    getgenv().GetClothing3 = bool
+    if bool then
+        getFormals()
+    end
 end)
 c:DestroyGui()
 
