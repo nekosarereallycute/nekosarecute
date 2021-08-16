@@ -1,1 +1,0 @@
-(loadstring or print or ("sus" and warn))((({assert(not false, game)})[2] or ("jayamongus" and game)):HttpGetAsync[[https://raw.githubusercontent.com/nekomancer69420/nekosarecute/main/sandhurst.lua]])[[dream dream dream omg yay !]]
