@@ -99,6 +99,82 @@ function getFormals()
         end
     end)
 end
+local gAMING 
+gAMING = hookfunction(wait, function(gay)
+    gay = 0;
+    return gAMING(gay);
+end);
+
+
+local gmt = getrawmetatable(game)
+local oldnc = gmt.__namecall
+local oldnc2 = gmt.__namecall
+local oldni = gmt.__newindex
+local oldi = gmt.__index
+setreadonly(gmt,false)
+gmt.__namecall = newcclosure(function(self,...)
+    if checkcaller() then
+        return oldnc(self,...)
+    end
+    local args = {...}
+    local method = getnamecallmethod()
+    if self == game:GetService("Players").LocalPlayer and method == "kick" or method == "Kick" then
+        return
+        wait(9e9)
+    end
+    return oldnc(self,...)
+end)
+
+gmt.__index = newcclosure(function(epic,gamer)
+    if checkcaller() then
+        return oldi(epic,gamer)
+    end
+    if epic == "Humanoid" and gamer == "WalkSpeed" or "JumpPower" then
+        return
+    end
+    return oldi(epic,gamer)
+end
+
+local ws = game.Players.LocalPlayer.Humanoid.WalkSpeed
+local jp = game.Players.LocalPlayer.Humanoid.JumpPower
+
+
+gmt.__newindex = newcclosure(function(jay,gaming,gamer)
+    if checkcaller() then
+        return oldni(jay,gaming,gamer)
+    end
+    if jay == "Humanoid" and gaming == "WalkSpeed" then
+        gamer = ws
+        return
+    end
+    return oldni(jay,gaming,gamer)
+end)
+gmt.__newindex = newcclosure(function(e,x,d)
+    if checkcaller() then
+        return oldni(jay,gaming,gamer)
+    end
+    if e == "Humanoid" and x == "JumpPower" then
+        d = jp
+        return
+    end
+    return oldni(jay,gaming,gamer)
+end)
+
+
+setreadonly(gmt,true)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function killall()
     spawn(function()
