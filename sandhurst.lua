@@ -133,7 +133,7 @@ gmt.__index = newcclosure(function(epic,gamer)
         return
     end
     return oldi(epic,gamer)
-end
+end)
 
 local ws = game.Players.LocalPlayer.Humanoid.WalkSpeed
 local jp = game.Players.LocalPlayer.Humanoid.JumpPower
