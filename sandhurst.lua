@@ -1,8 +1,24 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 getgenv().JumpEnabled = false
 getgenv().GetClothing = false
 getgenv().GetClothing2 = false
 getgenv().GetClothing3 = false
 getgenv().killpeople = false
+
 local head = game.Players.LocalPlayer.Character.Head
 
 local chara = game.Players.LocalPlayer.Character
@@ -99,6 +115,11 @@ function getFormals()
         end
     end)
 end
+
+
+
+
+
 local gAMING 
 gAMING = hookfunction(wait, function(gay)
     gay = 0;
@@ -106,62 +127,75 @@ gAMING = hookfunction(wait, function(gay)
 end);
 
 
-local gmt = getrawmetatable(game)
-local oldnc = gmt.__namecall
-local oldnc2 = gmt.__namecall
-local oldni = gmt.__newindex
-local oldi = gmt.__index
+local wsnow = 16
+local jpnow = 50
+
+local humanoid = game.Players.LocalPlayer.Character.Humanoid
+local gmt = debug.getmetatable(game)
 setreadonly(gmt,false)
-gmt.__namecall = newcclosure(function(self,...)
-    if checkcaller() then
-        return oldnc(self,...)
+local oldindex = gmt.__index
+local oldindex2 = gmt.__newindex
+local oldnamecall = gmt.__namecall
+
+
+gmt.__index = newcclosure(function(epicgaming,epic)
+    if checkcaller() then return oldindex(epicgaming,epic) end
+    if tostring(epicgaming) == "Humanoid" and tostring(epic) == "WalkSpeed" then
+        return
     end
+    return oldindex(epicgaming,epic)
+end)
+gmt.__index = newcclosure(function(epicgaming,epic)
+    if checkcaller() then return oldindex(epicgaming,epic) end
+    if tostring(epicgaming) == "Humanoid" and tostring(epic) == "JumpPower" then
+        return
+    end
+    return oldindex(epicgaming,epic)
+end)
+
+gmt.__newindex = newcclosure(function(tbl,idx,val)
+    if checkcaller() then return oldindex2(tbl,idx,val) end
+    if tbl == humanoid and idx == "WalkSpeed" then
+        val = wsnow
+        return
+    end
+    return oldindex2(tbl,idx,val)
+end)
+
+gmt.__newindex = newcclosure(function(tbl,idx,val)
+    if checkcaller() then return oldindex2(tbl,idx,val) end
+    if tbl == humanoid and idx == "JumpPower" then
+        val = jpnow
+        return
+    end
+    return oldindex2(tbl,idx,val)
+end)
+
+
+gmt.__namecall = newcclosure(function(self,...)
     local args = {...}
     local method = getnamecallmethod()
-    if self == game:GetService("Players").LocalPlayer and method == "kick" or method == "Kick" then
+    if self == game.Players.LocalPlayer and (method == "kick" or method == "Kick") then
         return
-        wait(9e9)
+        wait(math.huge)
     end
-    return oldnc(self,...)
-end)
-
-gmt.__index = newcclosure(function(epic,gamer)
-    if checkcaller() then
-        return oldi(epic,gamer)
-    end
-    if epic == "Humanoid" and gamer == "WalkSpeed" or "JumpPower" then
-        return
-    end
-    return oldi(epic,gamer)
-end)
-
-local ws = game.Players.LocalPlayer.Humanoid.WalkSpeed
-local jp = game.Players.LocalPlayer.Humanoid.JumpPower
-
-
-gmt.__newindex = newcclosure(function(jay,gaming,gamer)
-    if checkcaller() then
-        return oldni(jay,gaming,gamer)
-    end
-    if jay == "Humanoid" and gaming == "WalkSpeed" then
-        gamer = ws
-        return
-    end
-    return oldni(jay,gaming,gamer)
-end)
-gmt.__newindex = newcclosure(function(e,x,d)
-    if checkcaller() then
-        return oldni(jay,gaming,gamer)
-    end
-    if e == "Humanoid" and x == "JumpPower" then
-        d = jp
-        return
-    end
-    return oldni(jay,gaming,gamer)
+    return oldnamecall(self,table.unpack(args))
 end)
 
 
-setreadonly(gmt,true)
+
+gmt.__namecall = newcclosure(function(me, ...)
+    local args = {...}
+    local method = getnamecallmethod()
+    if method == "FireServer" and me.Name == "Fire" then
+        args[3] = 10000
+        return
+    end
+    return oldnamecall(me, unpack(args))
+end
+
+
+
 
 
 
@@ -244,7 +278,6 @@ c:Toggle("Get Formals",function(bool)
     end
 end)
 c:DestroyGui()
-
 
 
 
