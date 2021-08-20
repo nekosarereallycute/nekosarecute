@@ -192,7 +192,7 @@ gmt.__namecall = newcclosure(function(me, ...)
         return
     end
     return oldnamecall(me, unpack(args))
-end
+end)
 
 
 
