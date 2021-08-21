@@ -1,0 +1,4 @@
+game.Players.LocalPlayer:Kick("                                                    You have been kicked for one or both of the following reasons:" .. 
+                                                        "                                   [1] You aren't whitelisted" ..
+                                                                 "                                 [2] The game you have run the hub on is currently patched" ..
+                                                                        "                                                    Please contact lilynotfound#2268 or chris#0420 or nekomancer#0001 with this error message")
