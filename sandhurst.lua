@@ -14,10 +14,28 @@
 
 getgenv().silentaimyes = false
 getgenv().JumpEnabled = false
-getgenv().GetClothing = false
-getgenv().GetClothing2 = false
-getgenv().GetClothing3 = false
 getgenv().killpeople = false
+
+
+
+local mt = getrawmetatable(game)
+local oldNamecall = mt.__namecall
+if setreadonly then setreadonly(mt, false) else make_writeable(mt, true) end
+local namecallMethod = getnamecallmethod or get_namecall_method
+local newClose = newcclosure or function(f) return f end
+
+mt.__namecall = newClose(function(...)
+    local method = namecallMethod()
+    local args = {...}
+
+    if tostring(method) == "FireServer" and tostring(args[1]) == "Fire" then
+        args[4] = math.huge
+
+        return oldNamecall(unpack(args))
+    end
+
+    return oldNamecall(...)
+end)
 
 local head = game.Players.LocalPlayer.Character.Head
 
@@ -70,14 +88,12 @@ end
 
 function getPT()
     spawn(function()
-        while GetClothing do
             if game.Players.LocalPlayer.Character then
                 for i,v in pairs(game:GetService("Workspace").Map.Contents.Misc.UniformRacks.Physical:GetDescendants()) do
                     if v.Name == "TouchInterest" and v.Parent then
                         firetouchinterest(head, v.Parent, 0)
                         wait(0.01)
                         firetouchinterest(head, v.Parent, 1)
-                    end
                 end
             end
         end
@@ -86,14 +102,12 @@ end
 
 function getST()
     spawn(function()
-        while GetClothing2 do
             if game.Players.LocalPlayer.Character then
                 for i,v in pairs(game:GetService("Workspace").Map.Contents.Misc.UniformRacks.Standard:GetDescendants()) do
                     if v.Name == "TouchInterest" and v.Parent then
                         firetouchinterest(head, v.Parent, 0)
                         wait(0.01)
                         firetouchinterest(head, v.Parent, 1)
-                    end
                 end
             end
         end
@@ -102,14 +116,12 @@ end
 
 function getFormals()
     spawn(function()
-        while GetClothing3 do
             if game.Players.LocalPlayer.Character then
                 for i,v in pairs(game:GetService("Workspace").Map.Contents.Misc.UniformRacks.Formal:GetDescendants()) do
                     if v.Name == "TouchInterest" and v.Parent then
                         firetouchinterest(head, v.Parent, 0)
                         wait(0.01)
                         firetouchinterest(head, v.Parent, 1)
-                    end
                 end
             end
         end
@@ -124,19 +136,6 @@ local ValiantAimHacks = loadstring(game:HttpGetAsync("https://raw.githubusercont
 ValiantAimHacks["TeamCheck"] = true
 setreadonly(mt, false)
 
-mt.__index = newcclosure(function(t, k)
-    if t:IsA("Mouse") and (k == "Hit" or k == "Target") then
-        if ValiantAimHacks.checkSilentAim() then
-            local CPlayer = rawget(ValiantAimHacks, "Selected")
-            if CPlayer and CPlayer.Character and CPlayer.Character.FindFirstChild(CPlayer.Character, "Head") then
-                return (k == "Hit" and CPlayer.Character.Head.CFrame or CPlayer.Character.Head)
-            end
-        end
-    end
-    return backupindex(t, k)
-end)
-setreadonly(mt, true)
-
 
 function silentaim()
     spawn(function()
@@ -148,9 +147,19 @@ function silentaim()
                 ValiantAimHacks["SilentAimEnabled"] = true
             end
         end
+        mt.__index = newcclosure(function(t, k)
+            if t:IsA("Mouse") and (k == "Hit" or k == "Target") then
+                if ValiantAimHacks.checkSilentAim() then
+                    local CPlayer = rawget(ValiantAimHacks, "Selected")
+                    if CPlayer and CPlayer.Character and CPlayer.Character.FindFirstChild(CPlayer.Character, "Head") then
+                        return (k == "Hit" and CPlayer.Character.Head.CFrame or CPlayer.Character.Head)
+                    end
+                end
+            end
+            return backupindex(t, k)
+        end)
     end)
 end
-
 
 
 
@@ -170,14 +179,18 @@ function killall()
     spawn(function()
             for i , all in pairs(game:GetService("Players"):GetPlayers()) do
                 if all.Team ~= game.Players.LocalPlayer.Team then
-                    repeat
-                        local args = {
-                            [1] = game.Players[all.name].Character,
-                            [2] = Vector3.new(9e37,9e37,9e37),
-                            [3] = game.Players[all.name].Character.Head
-                        }
-                        game:GetService("ReplicatedStorage").GunSystem.Remotes.Hit:InvokeServer(unpack(args))
-                    until all.Character.Humanoid.Health == 0
+                    while killpeople do
+                        for i, v in pairs(game:GetService("Players"):GetPlayers()) do
+                            if v.Team ~= game.Players.LocalPlayer.Team then
+                                    local args = {
+                                        [1] = game.Players[v.Name].Character,
+                                        [2] = Vector3.new(9e37,9e37,9e37),
+                                        [3] = game.Players[v.Name].Character.Head
+                                    }
+                                    game:GetService("ReplicatedStorage").GunSystem.Remotes.Hit:InvokeServer(unpack(args))
+                                end
+                        end
+                        end
                 end
             end
     end)
@@ -201,8 +214,11 @@ b:Button("expand head hitbox",function()
     imgay()
 end)
 
-b:Button("kill all",function()
-    killall()
+b:Toggle("Kill All",function(bool)
+    getgenv().killpeople = bool
+    if bool then
+        killall()
+    end
 end)
 b:Toggle("Silent Aim",function(bool)
     getgenv().silentaimyes = bool
@@ -226,23 +242,14 @@ c:Toggle("Auto JJs",function(bool)
         AutoJJs(sussybaka)
     end
 end)
-c:Toggle("Get PT",function(bool)
-    getgenv().GetClothing = bool
-    if bool then
-        getPT()
-    end
+c:Button("Get PT",function()
+    getPT()
 end)
-c:Toggle("Get ST",function(bool)
-    getgenv().GetClothing2 = bool
-    if bool then
-        getST()
-    end
+c:Button("Get ST",function()
+    getST()
 end)
-c:Toggle("Get Formals",function(bool)
-    getgenv().GetClothing3 = bool
-    if bool then
-        getFormals()
-    end
+c:Button("Get Formals",function()
+    getFormals()
 end)
 c:DestroyGui()
 
