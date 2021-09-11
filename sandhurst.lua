@@ -12,7 +12,7 @@
 
 
 
-
+getgenv().silentaimyes = false
 getgenv().JumpEnabled = false
 getgenv().GetClothing = false
 getgenv().GetClothing2 = false
@@ -117,84 +117,37 @@ function getFormals()
 end
 
 
+-- // Index Version // --
+local mt = getrawmetatable(game)
+local backupindex = mt.__index
+local ValiantAimHacks = loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/nekomancer69420/timeless/main/nice.lua"))()
+ValiantAimHacks["TeamCheck"] = true
+setreadonly(mt, false)
 
 
-
-local gAMING 
-gAMING = hookfunction(wait, function(gay)
-    gay = 0;
-    return gAMING(gay);
-end);
-
-
-local wsnow = 16
-local jpnow = 50
-
-local humanoid = game.Players.LocalPlayer.Character.Humanoid
-local gmt = debug.getmetatable(game)
-setreadonly(gmt,false)
-local oldindex = gmt.__index
-local oldindex2 = gmt.__newindex
-local oldnamecall = gmt.__namecall
-
-
-gmt.__index = newcclosure(function(epicgaming,epic)
-    if checkcaller() then return oldindex(epicgaming,epic) end
-    if tostring(epicgaming) == "Humanoid" and tostring(epic) == "WalkSpeed" then
-        return
-    end
-    return oldindex(epicgaming,epic)
-end)
-gmt.__index = newcclosure(function(epicgaming,epic)
-    if checkcaller() then return oldindex(epicgaming,epic) end
-    if tostring(epicgaming) == "Humanoid" and tostring(epic) == "JumpPower" then
-        return
-    end
-    return oldindex(epicgaming,epic)
-end)
-
-gmt.__newindex = newcclosure(function(tbl,idx,val)
-    if checkcaller() then return oldindex2(tbl,idx,val) end
-    if tbl == humanoid and idx == "WalkSpeed" then
-        val = wsnow
-        return
-    end
-    return oldindex2(tbl,idx,val)
-end)
-
-gmt.__newindex = newcclosure(function(tbl,idx,val)
-    if checkcaller() then return oldindex2(tbl,idx,val) end
-    if tbl == humanoid and idx == "JumpPower" then
-        val = jpnow
-        return
-    end
-    return oldindex2(tbl,idx,val)
-end)
-
-
-gmt.__namecall = newcclosure(function(self,...)
-    local args = {...}
-    local method = getnamecallmethod()
-    if self == game.Players.LocalPlayer and (method == "kick" or method == "Kick") then
-        return
-        wait(math.huge)
-    end
-    return oldnamecall(self,table.unpack(args))
-end)
-
-
-
-gmt.__namecall = newcclosure(function(me, ...)
-    local args = {...}
-    local method = getnamecallmethod()
-    if method == "FireServer" and me.Name == "Fire" then
-        args[3] = 10000
-        return
-    end
-    return oldnamecall(me, unpack(args))
-end)
-
-
+function silentaim()
+    spawn(function()
+        while wait() do
+            if not silentaimyes then
+                ValiantAimHacks["SilentAimEnabled"] = false
+            end
+            if silentaimyes then
+                ValiantAimHacks["SilentAimEnabled"] = true
+            end
+        end
+        mt.__index = newcclosure(function(t, k)
+            if t:IsA("Mouse") and (k == "Hit" or k == "Target") then
+                if ValiantAimHacks.checkSilentAim() then
+                    local CPlayer = rawget(ValiantAimHacks, "Selected")
+                    if CPlayer and CPlayer.Character and CPlayer.Character.FindFirstChild(CPlayer.Character, "Head") then
+                        return (k == "Hit" and CPlayer.Character.Head.CFrame or CPlayer.Character.Head)
+                    end
+                end
+            end
+            return backupindex(t, k)
+        end)
+    end)
+end
 
 
 
@@ -212,15 +165,23 @@ end)
 
 function killall()
     spawn(function()
-        while killpeople do
-            for i , v in pairs(game:GetService("Players"):GetPlayers()) do
-                if v ~= game.Players.LocalPlayer then
-                    game:GetService("ReplicatedStorage").GunSystem.Remotes.Hit:InvokeServer(v.Character,Vector3.new(1,9e37,1),v.Character.Head)
+            for i , all in pairs(game:GetService("Players"):GetPlayers()) do
+                if all.Team ~= game.Players.LocalPlayer.Team then
+                    repeat
+                        local args = {
+                            [1] = game.Players[all.name].Character,
+                            [2] = Vector3.new(9e37,9e37,9e37),
+                            [3] = game.Players[all.name].Character.Head
+                        }
+                        game:GetService("ReplicatedStorage").GunSystem.Remotes.Hit:InvokeServer(unpack(args))
+                    until all.Character.Humanoid.Health == 0
                 end
             end
-        end
     end)
 end
+
+
+
 
 local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/AikaV3rm/UiLib/master/Lib.lua')))()
 
@@ -237,10 +198,13 @@ b:Button("expand head hitbox",function()
     imgay()
 end)
 
-b:Toggle("Kill All",function(bool)
-    getgenv().killpeople = bool
+b:Button("kill all",function()
+    killall()
+end)
+b:Toggle("Silent Aim",function(bool)
+    getgenv().silentaimyes = bool
     if bool then
-        killall()
+        silentaim()
     end
 end)
 
