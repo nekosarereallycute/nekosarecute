@@ -32,7 +32,7 @@ game.PlaceId == 5188367351 then
    loadstring(game:HttpGet("https://raw.githubusercontent.com/nekomancer69420/nekosarecute/main/ftnekouwu.lua", true))()
 elseif
 game.PlaceId == 2788229376 then
-   loadstring(game:HttpGet("loadstringhttps://raw.githubusercontent.com/nekomancer69420/timeless/main/dahoodobftime.lua", true))()
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/nekomancer69420/timeless/main/dahoodobftime.lua", true))()
 elseif
 game.PlaceId == 6490016198 then
    loadstring(game:HttpGet("https://raw.githubusercontent.com/nekomancer69420/timeless/main/slayertyccoonreal.lua", true))()
@@ -40,6 +40,6 @@ elseif
 game.PlaceId == 606849621 then
    loadstring(game:HttpGet("https://raw.githubusercontent.com/nekomancer69420/nekosarecute/main/jailbreakobfuscated.lua", true))()
 else
-   loadstring(game:HttpGet("https://raw.githubusercontent.com/nekomancer69420/nekosarecute/main/tps.lua", true))()
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/nekomancer69420/timeless/main/nice.lua", true))()
 end
 
