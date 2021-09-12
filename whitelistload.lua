@@ -1,7 +1,7 @@
 -- Keys --
 
 local Keys = {
-    ["entersaberalter"] = true
+    ["swordartoffline"] = true
 }
  
 -- Variables --
