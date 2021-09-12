@@ -40,6 +40,6 @@ elseif
 game.PlaceId == 606849621 then
    loadstring(game:HttpGet("https://raw.githubusercontent.com/nekomancer69420/nekosarecute/main/jailbreakobfuscated.lua", true))()
 else
-   loadstring(game:HttpGet("https://raw.githubusercontent.com/nekomancer69420/timeless/main/nice.lua", true))()
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/nekomancer69420/nekosarecute/main/tps.lua", true))()
 end
 
