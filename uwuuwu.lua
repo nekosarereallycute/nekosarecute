@@ -1,1 +1,1 @@
-game.Players.LocalPlayer:Kick("disabled right now dont use it")
+game.Players.LocalPlayer:Kick("disabled right now, small bug, dont use it")
