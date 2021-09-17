@@ -1,6 +1,6 @@
 local hi = Instance.new("Sound")
 hi.Name = "Sound"
-hi.SoundId = "http://www.roblox.com/asset/?id=5442020514"
+hi.SoundId = "http://www.roblox.com/asset/?id=7311004373"
 hi.Volume = 2
 hi.Looped = true
 hi.archivable = false
