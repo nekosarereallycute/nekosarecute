@@ -2,7 +2,7 @@ local function notify(title,text,dur)
         game:GetService("StarterGui"):SetCore("SendNotification",{
             Title = title,
             Text = text,
-            Duration = dur or 5
+            Duration = dur or 10
         })
     end
 
