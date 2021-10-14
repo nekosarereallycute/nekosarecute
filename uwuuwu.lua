@@ -10,4 +10,4 @@ notify("verifying", "Please wait..")
 
 wait(5)
 
-game.Players.LocalPlayer:Kick("noob amogus error code 96969420")
+game.Players.LocalPlayer:Kick("noob amogus error code 1")
